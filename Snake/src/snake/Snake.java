@@ -41,9 +41,9 @@ public class Snake extends Application {
     private Random rd = new Random();
     private Point food = new Point();
    
-    private final int grid_x = 30; //number of rows
-    private final int grid_y = 30; //number of columns
-   
+    private final int grid_x = 5; //number of rows
+    private final int grid_y = 5; //number of columns
+    private int size = grid_x * grid_y;
  
     private Rectangle[][] grid;
     private Timeline action;
@@ -90,8 +90,8 @@ public class Snake extends Application {
         
         basePane.getChildren().add(score);
         AnchorPane.setTopAnchor(score, 30.0);
-        AnchorPane.setLeftAnchor(score, 1.0);
-        AnchorPane.setRightAnchor(score, 1.0);
+        AnchorPane.setLeftAnchor(score, 250.0);
+        AnchorPane.setRightAnchor(score, 250.0);
  
         Pane root = new Pane();
         basePane.getChildren().add(root);
@@ -153,7 +153,7 @@ public class Snake extends Application {
         
      
         action = new Timeline(
-                new KeyFrame(Duration.seconds(0.1),
+                new KeyFrame(Duration.seconds(0.5),
                         new EventHandler<ActionEvent>() {
  
                     @Override
@@ -185,6 +185,13 @@ public class Snake extends Application {
                             }
                         }
                           
+                        }
+                       
+                        if (points.size()== size+2)
+                        {
+                            System.out.println("YOU ARE WINNER");
+                            action.stop();
+                            infoBox("You have won this shit !!!", "CONGRATULATIONS");
                         }
                         
                         
